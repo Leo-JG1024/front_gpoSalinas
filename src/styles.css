@@ -31,4 +31,30 @@ body {
     width: 60%;
     max-width: 400px;
   }
+  .text-danger {
+    color: red ;
+  }
+  
+  .border-danger {
+    border-color: red ;
+  }
+  
+  .text-success {
+    color: green ;
+  }
+  
+  .border-success {
+    border-color: green ;
+  }
+  .bg-success {
+    background-color: #28a745; 
+  }
+  
+  .bg-danger {
+    background-color: #dc3545;
+  }
+  
+  .text-white {
+    color: #ffffff; 
+  }
   

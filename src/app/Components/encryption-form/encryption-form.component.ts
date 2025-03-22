@@ -1,48 +1,33 @@
 import { Component } from '@angular/core';
-
+import { EncryptionService } from '../../Services/encryption.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-encryption-form',
+  imports: [FormsModule,CommonModule],
   templateUrl: './encryption-form.component.html',
   styleUrls: ['./encryption-form.component.css']
 })
 export class EncryptionFormComponent {
-  nombre: string = ''; 
-  isListening: boolean = false; 
+  nombre: string = '';
+  isListening = false;
 
-  private recognition: any = null;
+  constructor(private speechService: EncryptionService) {}
 
-
-  constructor() {
-    if ('webkitSpeechRecognition' in window) {
-      this.recognition = new (window as any).webkitSpeechRecognition();
-      this.recognition.continuous = true; 
-      this.recognition.interimResults = true; 
-
-      this.recognition.onresult = (event: any) => {
-        const transcript = event.results[event.resultIndex][0].transcript;
-        this.nombre = transcript; 
-      };
-
-
-      this.recognition.onstart = () => {
-        this.isListening = true; 
-      };
-
- 
-      this.recognition.onend = () => {
-        this.isListening = false; 
-      };
-    }
-  }
-
-  startListening(): void {
-    if (this.recognition) {
-      if (this.isListening) {
-        this.recognition.stop(); 
-      } else {
-        this.recognition.start(); 
+  startListening() {
+    this.isListening = true;
+    this.speechService.record('es-ES').subscribe({
+      next: (text: string) => {
+        this.nombre = text; // Actualiza el input con el texto filtrado y limitado
+      },
+      error: (err) => {
+        console.error('Error de reconocimiento de voz:', err);
+        this.isListening = false;
+      },
+      complete: () => {
+        this.isListening = false;
       }
-    }
+    });
   }
 }
