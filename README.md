@@ -1,59 +1,71 @@
-# PruebaTFront
+# Aplicación de Dictado de Voz con Encriptación en Angular y Node.js
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+## Descripción
+Este proyecto permite encriptar y desencriptar cadenas de texto utilizando **RSA_PKCS1_OAEP_PADDING**.
+## Nota: 
+El método de desencriptado **RSA_PKCS1_PADDING** ha sido descontinuado en Node.js a partir de la versión 20 debido a un cambio de seguridad. Por lo que se utlizo el algoritmo **RSA_PKCS1_OAEP_PADDING**
+La versión de Node que manejo es la : **Node.js v20.16.0**
 
-## Development server
+##  Tecnologías utilizadas
+- **Frontend**: Angular 19 (con Angular Universal)
+- **Backend**: Node.js con Express
+- **Encriptación**: `crypto` de Node.js
 
-To start a local development server, run:
+##  Instalación
+- **Instalación de dependencias**: npm install
+- **Ejecutar el Backend NodeJS**: cd backend/src
+                                  node server.js
+- **Ejecutar el FrontEnd Angular 19**: cd PT_Front-End\pruebaT_front>
+                                        ng serve -o                               
 
+
+##  Uso de la API
+Este endpoint permite encriptar un texto.
+
+#### **URL:**
+POST http://localhost:3000/api/encryption/encrypt
+**En el cuerpo de la solicitud**
+            {
+            "text": "Hola"
+            }
+
+**Respuesta esperada:**
+            {
+            "encryptedText": "BtfI1v9JyHJ0v7sm4qqeGqbI6mWCKfBp+GneOdy3XBCwH1sIRyAchyjJwFML3GGA9Xoq+wEhkjxQg9iRFmD3q2yhPNRCSMbPwTRCY44qw9ErdgtbK7njRvDF5yFg2jIhkmryiVWw3PQOmdRITiBhYjMIpbsiFJvx/LczHwVO7IvOL1YZY//zgqS974r1qKKGlawy2w1B9VK8maizJUy7Eu07vPrkfY+4zV6OdRRjXQpnvnCTEzSq25qhomxICLdf5iuC1wH1pKwNB61BaiCaDO++1wwGjptmZGX2jsK+HvpAa0W6zPYK/sTauR3HNWtsaMt31bw8272QLBduy06aqw=="
+            }
+
+Este endpoint permite desencriptar un texto previamente encriptado.
+
+POST http://localhost:3000/api/encryption/decrypt
+**En el cuerpo de la solicitud**
+
+            {
+            "encryptedText": "BtfI1v9JyHJ0v7sm4qqeGqbI6mWCKfBp+GneOdy3XBCwH1sIRyAchyjJwFML3GGA9Xoq+wEhkjxQg9iRFmD3q2yhPNRCSMbPwTRCY44qw9ErdgtbK7njRvDF5yFg2jIhkmryiVWw3PQOmdRITiBhYjMIpbsiFJvx/LczHwVO7IvOL1YZY//zgqS974r1qKKGlawy2w1B9VK8maizJUy7Eu07vPrkfY+4zV6OdRRjXQpnvnCTEzSq25qhomxICLdf5iuC1wH1pKwNB61BaiCaDO++1wwGjptmZGX2jsK+HvpAa0W6zPYK/sTauR3HNWtsaMt31bw8272QLBduy06aqw=="
+            }
+
+**Respuesta esperada:**
+            {
+            "decryptedText": "Hola"
+            }
+
+
+##  Pruebas
+1.- Ejecuta el proyecto en tu navegador.
+
+2.- Haz clic en el botón de micrófono para dictar tu texto (puedes decir tu nombre o cualquier cosa).
+
+3.- El texto dictado aparecerá en el campo de entrada.
+
+4.- Espera unos segundos y abre las herramientas de desarrollo en el navegador.
+
+5.- En la consola, verás un mensaje con el texto encriptado, por ejemplo:
+        Texto encriptado: "BtfI1v9JyHJ0v7sm4qqeGqbI6mWCKfBp+GneOdy3XBCwH1sIRyAchyjJwFML3GGA9Xoq+wEhkjxQg9iRFmD3q2yhPNRCSMbPwTRCY44qw9ErdgtbK7njRvDF5yFg2jIhkmryiVWw3PQOmdRITiBhYjMIpbsiFJvx/LczHwVO7IvOL1YZY//zgqS974r1qKKGlawy2w1B9VK8maizJUy7Eu07vPrkfY+4zV6OdRRjXQpnvnCTEzSq25qhomxICLdf5iuC1wH1pKwNB61BaiCaDO++1wwGjptmZGX2jsK+HvpAa0W6zPYK/sTauR3HNWtsaMt31bw8272QLBduy06aqw=="
+
+
+##  La llaves privada y publica se encuentra en la carpeta src/keys
+
+
+###  Clonar el repositorio
 ```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+git clone https://github.com/usuario/proyecto.git
+cd proyecto
