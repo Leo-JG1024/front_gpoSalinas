@@ -19,7 +19,7 @@ const encryptText = (text) => {
     const encrypted = crypto.publicEncrypt(
         {
             key: publicKey,
-            padding: crypto.constants.RSA_PKCS1_PADDING,
+            padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,  // Actualizado a RSA-OAEP
         },
         buffer
     );
@@ -36,7 +36,7 @@ const decryptText = (encryptedText) => {
     const decrypted = crypto.privateDecrypt(
         {
             key: privateKey,
-            padding: crypto.constants.RSA_PKCS1_PADDING,
+            padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,  // Actualizado a RSA-OAEP
         },
         buffer
     );

@@ -9,7 +9,7 @@ describe('EncryptionFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule,EncryptionFormComponent] // Asegúrate de importar los módulos necesarios
+      imports: [CommonModule, FormsModule,EncryptionFormComponent] 
     }).compileComponents();
 
     fixture = TestBed.createComponent(EncryptionFormComponent);
