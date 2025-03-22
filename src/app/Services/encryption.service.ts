@@ -1,6 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 interface IWindow extends Window {
   webkitSpeechRecognition: any;
@@ -10,7 +11,7 @@ interface IWindow extends Window {
   providedIn: 'root'
 })
 export class EncryptionService {
-  private apiUrl = 'http://localhost:3000/api/encryption/encrypt';
+  private apiUrl = environment.apiUrl;
 
   constructor(private zone: NgZone, private http: HttpClient) { }
 

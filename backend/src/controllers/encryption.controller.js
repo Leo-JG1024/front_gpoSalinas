@@ -1,8 +1,8 @@
 const { encryptText, decryptText } = require('../services/encryption.service');
 
-/**
- * Controlador para encriptar un texto recibido en el cuerpo de la petición.
- */
+
+ //Controlador para encriptar un texto recibido en el cuerpo de la petición.
+
 const encryptData = (req, res) => {
     try {
         const { text } = req.body;
@@ -17,9 +17,9 @@ const encryptData = (req, res) => {
     }
 };
 
-/**
- * Controlador para desencriptar un texto en base64 recibido en el cuerpo de la petición.
- */
+
+ // Controlador para desencriptar un texto en base64 recibido en el cuerpo de la petición.
+
 const decryptData = (req, res) => {
     try {
         const { encryptedText } = req.body;

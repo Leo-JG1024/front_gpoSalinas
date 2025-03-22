@@ -32,17 +32,16 @@ export class EncryptionFormComponent {
       }
     });
   }
-  // Método para encriptar el texto
-  encryptText(text: string) {
-    // Aquí llamamos al servicio para encriptar el texto
-    this.speechService.encryptText(text).subscribe({
-      next: (response) => {
-        this.encryptedText = response.encryptedText;  // Guarda el texto encriptado
-        console.log('Texto encriptado:', this.encryptedText);
-      },
-      error: (err) => {
-        console.error('Error al encriptar el texto:', err);
-      }
-    });
-  }
+    // Método para encriptar el texto
+    encryptText(text: string) {
+      this.speechService.encryptText(text).subscribe({
+        next: (response) => {
+          this.encryptedText = response.encryptedText; // Aquí guardamos el texto encriptado
+          console.log('Texto encriptado:', this.encryptedText);
+        },
+        error: (err) => {
+          console.error('Error al encriptar el texto:', err);
+        }
+      });
+    }
 }
