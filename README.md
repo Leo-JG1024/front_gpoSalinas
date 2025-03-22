@@ -89,5 +89,5 @@ POST http://localhost:3000/api/encryption/decrypt
 
 ###  Clonar el repositorio
 ```bash
-git clone https://github.com/usuario/proyecto.git
-cd proyecto
+git clone https://github.com/Leo-JG1024/front_gpoSalinas.git
+cd pruebaT_front
