@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 export class EncryptionFormComponent {
   nombre: string = '';
   isListening = false;
+  encryptedText: string = '';
 
   constructor(private speechService: EncryptionService) {}
 
@@ -27,6 +28,20 @@ export class EncryptionFormComponent {
       },
       complete: () => {
         this.isListening = false;
+        this.encryptText(this.nombre); // Llama al método para encriptar el texto
+      }
+    });
+  }
+  // Método para encriptar el texto
+  encryptText(text: string) {
+    // Aquí llamamos al servicio para encriptar el texto
+    this.speechService.encryptText(text).subscribe({
+      next: (response) => {
+        this.encryptedText = response.encryptedText;  // Guarda el texto encriptado
+        console.log('Texto encriptado:', this.encryptedText);
+      },
+      error: (err) => {
+        console.error('Error al encriptar el texto:', err);
       }
     });
   }

@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 interface IWindow extends Window {
   webkitSpeechRecognition: any;
@@ -9,8 +10,9 @@ interface IWindow extends Window {
   providedIn: 'root'
 })
 export class EncryptionService {
+  private apiUrl = 'http://localhost:3000/api/encryption/encrypt';
 
-  constructor(private zone: NgZone) { }
+  constructor(private zone: NgZone, private http: HttpClient) { }
 
   record(language: string): Observable<string> {
     return new Observable(observer => {
@@ -40,4 +42,9 @@ export class EncryptionService {
       recognition.start();
     });
   }
+
+    // Método para encriptar el texto a través de la API
+    encryptText(text: string): Observable<any> {
+      return this.http.post<any>(this.apiUrl, { text }); // Enviar texto a la API para encriptarlo
+    }
 }

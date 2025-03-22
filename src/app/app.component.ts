@@ -4,7 +4,7 @@ import { EncryptionFormComponent } from "./Components/encryption-form/encryption
 
 @Component({
   selector: 'app-root',
-  imports: [EncryptionFormComponent],
+  imports: [EncryptionFormComponent,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

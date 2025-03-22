@@ -1,3 +1,5 @@
+//Codigo de prueba para la encriptación.
+
 const { encryptText, decryptText } = require('./services/encryption.service');
 
 const text = "Fer 12";
