@@ -65,6 +65,28 @@ POST http://localhost:3000/api/encryption/decrypt
 ##  La llaves privada y publica se encuentra en la carpeta src/keys
 
 
+###  Integración de Dockerfile y Construcción.
+**Dockerfile de BackEnd**
+          Desde el directorio: cd PT_Front-End/pruebaT_front
+          docker build -t encryption-backend ./backend
+          docker run -p 3000:3000 encryption-backend
+          docker ps
+
+**Dockerfile de FrontEnd**
+          Desde el directorio: cd PT_Front-End/
+          docker build -t encryption-frontend ./pruebaT_front 
+          docker run -p 8080:80 encryption-frontend
+          docker ps
+
+
+
+**Prompts utilizados.**
+
+1.- Configuración de los algoritmos RSA_PKCS1_PADDING
+2.- Configuración de los algoritmos RSA_PKCS1_OAEP_PADDING 
+3.- Generación de claves privadas en OpenSSL
+4.- API webkitSpeechRecognition para el reconocimiento de voz en tiempo real.
+
 ###  Clonar el repositorio
 ```bash
 git clone https://github.com/usuario/proyecto.git
